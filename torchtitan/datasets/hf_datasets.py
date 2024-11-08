@@ -261,13 +261,13 @@ class HuggingFaceDatasetSFT(IterableDataset, Stateful):
         # read dataset
         ds = read_yml(dataset_path, ["inputs_pretokenized", "targets_pretokenized"])
         self.dataset_name = dataset_name
+        # print number of samples
+        print(f"Number of samples: {len(ds)}")
         self._data = split_dataset_by_node(ds, rank, world_size)
         # remove samples above seq_len
         self._data = self._data.filter(lambda x: len(x['inputs_pretokenized'] + x['targets_pretokenized']) <= seq_len)
         # shuffle
         #self._data = self._data.shuffle(seed=27)
-        # print number of samples
-        print(f"Number of samples: {len(self._data)}")
         self._tokenizer = tokenizer
         self.seq_len = seq_len
         self.infinite = infinite

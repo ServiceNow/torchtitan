@@ -12,6 +12,7 @@ profile_freq = 100
 
 [metrics]
 log_freq = 10
+enable_color_printing = false
 enable_tensorboard = true
 save_tb_folder = "tb"
 
@@ -38,6 +39,8 @@ tensor_parallel_degree = 1
 compile = true
 dataset = "sft"
 dataset_path = "/data/data/llama_3_1_8b_07_24_24_config.yaml"
+gc_freq = 50
+seed = 27
 
 [experimental]
 context_parallel_degree = 1
